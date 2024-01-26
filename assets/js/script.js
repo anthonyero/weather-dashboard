@@ -79,7 +79,7 @@ function retrieveCityCoordinates(event) {
 
 function getWeather () {
         // Can be called by: https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
-    var requestURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + currentCity["cityLatitude"] + "&lon=" + currentCity["cityLongitude"] +"&appid=" + apiKey;
+    var requestURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + currentCity["cityLatitude"] + "&lon=" + currentCity["cityLongitude"] +"&appid=" + apiKey + "&units=imperial";
     console.log(requestURL);
     fetch(requestURL)
         .then(function (response) {
