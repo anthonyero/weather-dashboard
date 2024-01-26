@@ -2,6 +2,14 @@ var userCityInputEl = document.getElementById("city-name-input");
 var submitCityButton = document.querySelector(".submit-city-name-button");
 
 
+var currentCity = {
+    cityName: "",
+    cityLatitude: "",
+    cityLongitude: "",
+    country: "",
+    state: ""
+}
+
 // Calling the OpenWeather API 
     // Can be called by: https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
 // To get the latitude and longitude we need to use the Godcoding API
@@ -30,9 +38,13 @@ function retrieveCityCoordinates(event) {
             }
             else {
                 var name = data[0]["name"];
+                currentCity["cityName"] = data[0]["name"];
                 var cityLatitude = data[0]["lat"];
+                currentCity["cityLatitude"] = data[0]["lat"];
                 var cityLongitude = data[0]["lon"];
+                currentCity["cityLongitude"] = data[0]["lon"];
                 var country = data[0]["country"]
+                currentCity["country"] = data[0]["country"]
                
                 console.log("")
                 console.log("cityName: " + cityName);
@@ -42,7 +54,11 @@ function retrieveCityCoordinates(event) {
                 console.log("country: " + country)
                 if ("state" in data[0]){
                     var state = data[0]["state"];
+                    currentCity["state"] = data[0]["state"];
                     console.log("state: " + state);
+                } else {
+                    currentCity["state"] = ""
+                    
                 }
             }
         })
