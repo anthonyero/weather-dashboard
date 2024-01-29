@@ -10,7 +10,8 @@ var currentCity = {
 }
 
 // Calling the OpenWeather API 
-    // Can be called by: https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+    // Can be called by: https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key} for a 5-day forecast
+    // Can be called by: https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key} for a current forecast
 // To get the latitude and longitude we need to use the Godcoding API
     // Can be called by: http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
 
@@ -78,6 +79,13 @@ function retrieveCityCoordinates(event) {
 }
 
 function getWeather () {
+    // Current Forecast
+        //var currentRequestURL =  "https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key} for a current forecast
+
+
+
+
+
         // Can be called by: https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
     var requestURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + currentCity["cityLatitude"] + "&lon=" + currentCity["cityLongitude"] +"&appid=" + apiKey + "&units=imperial";
     console.log(requestURL);
@@ -87,6 +95,14 @@ function getWeather () {
         })
         .then(function (data) {
             console.log(data)
+            var indexes = [];
+            for (var index = 0; index < data["list"].length; index++) {
+                if (data["list"][index]["dt_txt"].includes("15:00")) {
+                        indexes.push(index);
+                }
+            }
+            console.log("indexes: " + indexes)
+            
         })
 }
     
