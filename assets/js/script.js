@@ -1,5 +1,6 @@
 var userCityInputEl = document.getElementById("city-name-input");
 var submitCityButton = document.querySelector(".submit-city-name-button");
+var fiveDayForecastContainer = document.querySelector(".card-container")
 
 var currentCity = {
     cityName: "",
@@ -102,7 +103,15 @@ function getWeather () {
                 }
             }
             console.log("indexes: " + indexes)
-            
+            for (var i = 0; i < indexes.length; i++) {
+                $(".card-container").append("<div class='card card" + i + "'>");
+                $(".card" + i).append("<h3 class='date'>" + data["list"][indexes[i]]["dt_txt"].slice(0,10) + "</h3>"); // Pulls date from
+                $(".card" + i).append("<p class='icon'>" + data["list"][indexes[i]]["weather"]["icon"] + "</p>"); // Pulls icon 
+                $(".card" + i).append("<p class='temp'>Temp: " + data["list"][indexes[i]]["main"]["temp"] + "°F</p>"); // Pulls temperature 
+                $(".card" + i).append("<p class='wind'>Wind: " + data["list"][indexes[i]]["wind"]["speed"] + "MPH</p>"); // Pulls temperature 
+                $(".card" + i).append("<p class='humidity'>Humidity: " + data["list"][indexes[i]]["main"]["humidity"] + "%</p>"); // Pulls temperature 
+                $(".card-container").append("</div>");
+            }
         })
 }
     
