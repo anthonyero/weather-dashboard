@@ -3,6 +3,7 @@ var submitCityButton = document.querySelector(".submit-city-name-button");
 var fiveDayForecastContainer = document.querySelector(".card-container");
 var todayWeatherContainer = document.querySelector(".today-weather-container");
 var cardContainer = document.querySelector(".card-container")
+var previousCitiesContainer = document.querySelector(".previous-cities-container");
 
 var currentCity = {
     cityName: "",
@@ -13,6 +14,11 @@ var currentCity = {
 }
 
 var currentDay = dayjs().format("YYYY-MM-DD");
+
+
+if (localStorage.getItem("previousCitySearches") === null) { 
+    localStorage.setItem("previousCitySearches", JSON.stringify([]));
+  } 
 
 // Calling the OpenWeather API 
     // Can be called by: https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key} for a 5-day forecast
@@ -76,6 +82,7 @@ function retrieveCityCoordinates(event) {
                     currentCity["state"] = ""
                 }
                 console.log("After if: " + currentCity)
+                searchHistorySave();
                 getWeather() // Up to this point, the currentCity object is defined completely so I called getWeather here
 
             }
@@ -141,3 +148,25 @@ function getWeather () {
         })
 }
     
+function searchHistorySave () {
+    var storedCitySearches = JSON.parse(localStorage.getItem("previousCitySearches"));
+    var tempSearches = []
+
+    if (storedCitySearches.includes(currentCity["cityName"])) {
+        for (var i = 0; i < storedCitySearches.length; i++){
+            if (storedCitySearches[i] != currentCity["cityName"]) {
+                tempSearches.push(storedCitySearches[i])
+            }
+        }
+        tempSearches.push(currentCity["cityName"]);
+        localStorage.setItem("previousCitySearches",JSON.stringify(tempSearches));
+        // Call a render function
+        return
+
+    } else {
+        storedCitySearches.push(currentCity["cityName"]);
+        localStorage.setItem("previousCitySearches", JSON.stringify(storedCitySearches));
+        // Call a render function
+        return
+    }
+}
