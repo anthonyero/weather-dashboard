@@ -1,6 +1,8 @@
 var userCityInputEl = document.getElementById("city-name-input");
 var submitCityButton = document.querySelector(".submit-city-name-button");
-var fiveDayForecastContainer = document.querySelector(".card-container")
+var fiveDayForecastContainer = document.querySelector(".card-container");
+var todayWeatherContainer = document.querySelector(".today-weather-container");
+var cardContainer = document.querySelector(".card-container")
 
 var currentCity = {
     cityName: "",
@@ -81,6 +83,11 @@ function retrieveCityCoordinates(event) {
 
 function getWeather () {
     // Current Forecast
+    // While statement introduced to prevent appending multiple cities
+    while (todayWeatherContainer.hasChildNodes()) {
+        todayWeatherContainer.removeChild(todayWeatherContainer.firstChild); // As long as the container has child elements, it will delete the first. This repeats until the list container doesn't have any child elements
+    }
+
     var currentRequestURL =  "https://api.openweathermap.org/data/2.5/weather?lat=" + currentCity["cityLatitude"] +"&lon=" + currentCity["cityLongitude"] + "&appid=" + apiKey + "&units=imperial";//for a current forecast 
     fetch(currentRequestURL)
         .then(function (response) {
@@ -88,7 +95,7 @@ function getWeather () {
         })
         .then(function (data) {
             console.log(data)
-            $(".today-weather-container").append("<h2>" + data["name"].toUpperCase() + "</h2>");
+            $(".today-weather-container").append("<h2>" + currentCity["cityName"].toUpperCase() + "</h2>");
             $(".today-weather-container").append("<p class='today-temp'>Temp: " +  data["main"]["temp"] + " °F</p>");
             $(".today-weather-container").append("<p class='today-wind'>Wind: " + data["wind"]["speed"]+ " MPH</p>");
             $(".today-weather-container").append("<p class='today-humidity'> Humidity: " + data["main"]["humidity"] + "%</p>");
@@ -100,6 +107,11 @@ function getWeather () {
 
     // Five Day Weather forecast
         // Can be called by: https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key}
+        // While statement introduced to prevent appending multiple cities
+        while (cardContainer.hasChildNodes()) {
+            cardContainer.removeChild(cardContainer.firstChild); // As long as the container has child elements, it will delete the first. This repeats until the list container doesn't have any child elements
+        }    
+
     var requestURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + currentCity["cityLatitude"] + "&lon=" + currentCity["cityLongitude"] +"&appid=" + apiKey + "&units=imperial";
     console.log(requestURL);
     fetch(requestURL)
