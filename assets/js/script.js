@@ -12,6 +12,8 @@ var currentCity = {
     state: ""
 }
 
+var currentDay = dayjs().format("YYYY-MM-DD");
+
 // Calling the OpenWeather API 
     // Can be called by: https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key} for a 5-day forecast
     // Can be called by: https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key} for a current forecast
@@ -95,7 +97,7 @@ function getWeather () {
         })
         .then(function (data) {
             console.log(data)
-            $(".today-weather-container").append("<h2>" + currentCity["cityName"].toUpperCase() + "</h2>");
+            $(".today-weather-container").append("<h2>" + currentCity["cityName"].toUpperCase() + " (" + currentDay + ")</h2>");
             $(".today-weather-container").append("<p class='today-temp'>Temp: " +  data["main"]["temp"] + " °F</p>");
             $(".today-weather-container").append("<p class='today-wind'>Wind: " + data["wind"]["speed"]+ " MPH</p>");
             $(".today-weather-container").append("<p class='today-humidity'> Humidity: " + data["main"]["humidity"] + "%</p>");
