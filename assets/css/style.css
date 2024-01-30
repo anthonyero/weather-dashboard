@@ -27,7 +27,13 @@ h1 {
 .search-container {
     display: flex;
     flex-direction: column;
+    padding-bottom: 10px;
 
+}
+
+form {
+    display: flex;
+    flex-direction: column;
 }
 
 .previous-cities-container {
