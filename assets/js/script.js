@@ -99,7 +99,7 @@ function getWeather () {
             $(".today-weather-container").append("<p class='today-temp'>Temp: " +  data["main"]["temp"] + " °F</p>");
             $(".today-weather-container").append("<p class='today-wind'>Wind: " + data["wind"]["speed"]+ " MPH</p>");
             $(".today-weather-container").append("<p class='today-humidity'> Humidity: " + data["main"]["humidity"] + "%</p>");
-            $(".today-weather-container").append("<img class='today-icon' src='https://openweathermap.org/img/wn/" + data["weather"][0]["icon"] + "@2x.png></img>");
+            $(".today-weather-container").append("<img class='today-icon' src='https://openweathermap.org/img/wn/" + data["weather"][0]["icon"] + "@2x.png'></img>");
         
         })
 
@@ -130,7 +130,7 @@ function getWeather () {
             for (var i = 0; i < indexes.length; i++) {
                 $(".card-container").append("<div class='card card" + i + "'>");
                 $(".card" + i).append("<h3 class='date'>" + data["list"][indexes[i]]["dt_txt"].slice(0,10) + "</h3>"); // Pulls date from
-                $(".card" + i).append("<p class='icon'>" + data["list"][indexes[i]]["weather"]["icon"] + "</p>"); // Pulls icon 
+                $(".card" + i).append("<img class='today-icon' src='https://openweathermap.org/img/wn/" + data["list"][indexes[i]]["weather"][0]["icon"] +  "@2x.png'></img>"); // Pulls icon 
                 $(".card" + i).append("<p class='temp'>Temp: " + data["list"][indexes[i]]["main"]["temp"] + " °F</p>"); // Pulls temperature 
                 $(".card" + i).append("<p class='wind'>Wind: " + data["list"][indexes[i]]["wind"]["speed"] + " MPH</p>"); // Pulls temperature 
                 $(".card" + i).append("<p class='humidity'>Humidity: " + data["list"][indexes[i]]["main"]["humidity"] + "%</p>"); // Pulls temperature 
