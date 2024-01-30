@@ -160,13 +160,26 @@ function searchHistorySave () {
         }
         tempSearches.push(currentCity["cityName"]);
         localStorage.setItem("previousCitySearches",JSON.stringify(tempSearches));
-        // Call a render function
+        renderSearchHistory() // Call a render function
         return
 
     } else {
         storedCitySearches.push(currentCity["cityName"]);
         localStorage.setItem("previousCitySearches", JSON.stringify(storedCitySearches));
-        // Call a render function
+        renderSearchHistory() // Call a render function
         return
     }
+}
+
+function renderSearchHistory () {
+    var storedCitySearches = JSON.parse(localStorage.getItem("previousCitySearches"));
+
+    while (previousCitiesContainer.hasChildNodes()) {
+        previousCitiesContainer.removeChild(previousCitiesContainer.firstChild); 
+    }
+
+    for (var i = 0; i < storedCitySearches.length; i++) {
+        $(".previous-cities-container").append("<p class='previous-search' city=" + storedCitySearches[i] + "'>" + storedCitySearches[i] + "</p>");
+    }
+    return 
 }
