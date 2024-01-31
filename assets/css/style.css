@@ -1,8 +1,12 @@
-
+* {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
 
 header {
     background-color: #283593;
-    /* height: 15%; */
+    height: 40px;
     text-align: center;  
 }
  
@@ -12,15 +16,16 @@ h1 {
 
 .main-container {
    /*  height: 85%; */
-    background-color: gray;
+    background-color: white;
     display: flex;
 }
 
 .city-city-list-container {
     display: flex;
     flex-direction: column;
-    background-color: aqua;
+    background-color: white;
     padding: 15px;
+    font-size: 1.2rem;
     /* width: 25%;*/
 }
 
@@ -28,7 +33,7 @@ h1 {
     display: flex;
     flex-direction: column;
     padding-bottom: 10px;
-
+    border-bottom: 2px solid black;
 }
 
 form {
@@ -36,38 +41,70 @@ form {
     flex-direction: column;
 }
 
+form input {
+    height: 2rem;
+    font-size: 1.4rem;
+    color: gray;
+    border-radius: 5px;
+}
+
+form button {
+    background-color: #283593;
+    color: white;
+    margin-top: 10px;
+    font-size: 1.4rem;
+    border-radius: 5px;
+}
+
 .previous-cities-container {
-    background-color: orange;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 }
 
 .previous-cities-container p {
+    background-color: lightgray;
+    padding: 5px;
     text-align: center;
-    font-size: 1.rem;
+    font-size: 1.2rem;
+    border-radius: 5px;
 }
 
 .today-five-day-forecast-container {
-    /* width: 1400px; */
+    display: flex;
+    flex-direction: column;
+    /* width: 75%;*/ 
 }
 
 .today-weather-container {
     margin: 10px;
     border: 2px solid black;
+    font-size: 1.2rem;
 }
+.today-weather-container h2,
+.today-temp,
+.today-wind,
+.today-humidity,
+.today-icon {
+    margin-left: 10px;
+}
+
+.today-weather-container h2 {
+    font-weight: bold;
+}
+
 
 .five-day-forecast-container h3,
 .five-day-forecast-container p {
     margin: 10px;
+    margin-left: 15px;
 }
 
-.today-five-day-forecase-container {
-    display: flex;
-    flex-direction: column;
-    color: green;
-    /* width: 75%;*/ 
+.five-day-forecast-container h3 {
+    font-weight: bold;
 }
+
+
 
 .today-weather-container {
     border-color: black;
@@ -80,8 +117,8 @@ form {
 }
 
 .card {
-    background-color: white;
+    background-color: gray;
     padding: 10px;
     margin: 10px;
-    border-radius: 10px;
+    color: white;
 }
