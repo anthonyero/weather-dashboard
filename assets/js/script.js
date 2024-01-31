@@ -23,7 +23,7 @@ if (localStorage.getItem("previousCitySearches") === null) {
 // Calling the OpenWeather API 
     // Can be called by: https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={API key} for a 5-day forecast
     // Can be called by: https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key} for a current forecast
-// To get the latitude and longitude we need to use the Godcoding API
+// To get the latitude and longitude we need to use the Geodcoding API
     // Can be called by: http://api.openweathermap.org/geo/1.0/direct?q={city name},{state code},{country code}&limit={limit}&appid={API key}
 
 var apiKey = "f53ab74dd566b816acb325cb5f4a1e19"
@@ -40,7 +40,7 @@ function retrieveCityCoordinates(event) {
     var cityName = userCityInputEl.value;
     cityName = cityName.replaceAll(" ", "_"); // If a city submitted 
    // console.log("cityName: " + cityName);
-    var requestURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=5&appid=" + apiKey;
+    var requestURL = "https://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=5&appid=" + apiKey;
     //console.log("requestURL: " + requestURL);
     userCityInputEl.value = ""; // Added to clear the text box 
 
