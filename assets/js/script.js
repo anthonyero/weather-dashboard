@@ -31,11 +31,9 @@ var apiKey = "f53ab74dd566b816acb325cb5f4a1e19"
 
 submitCityButton.addEventListener("click", retrieveCityCoordinates);
 
-/*
-function init (event) {
-    retrieveCityCoordinates(event);
-    getWeather();
-} */
+function init() {
+    renderSearchHistory();
+}
 
 function retrieveCityCoordinates(event) {
     event.preventDefault();
@@ -192,3 +190,6 @@ $(".previous-cities-container").on("click", ".previous-search", function (event)
     retrieveCityCoordinates(event);
 })
 
+
+
+init();
