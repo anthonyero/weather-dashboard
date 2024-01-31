@@ -44,6 +44,7 @@ function retrieveCityCoordinates(event) {
    // console.log("cityName: " + cityName);
     var requestURL = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityName + "&limit=5&appid=" + apiKey;
     //console.log("requestURL: " + requestURL);
+    userCityInputEl.value = ""; // Added to clear the text box 
 
     fetch(requestURL)
         .then(function (response) {
@@ -179,7 +180,15 @@ function renderSearchHistory () {
     }
 
     for (var i = 0; i < storedCitySearches.length; i++) {
-        $(".previous-cities-container").append("<p class='previous-search' city=" + storedCitySearches[i] + "'>" + storedCitySearches[i] + "</p>");
+        $(".previous-cities-container").append("<p class='previous-search' city='" + storedCitySearches[i] + "'>" + storedCitySearches[i] + "</p>");
     }
     return 
 }
+// Event Listener that allows a user to select a previously searched location
+$(".previous-cities-container").on("click", ".previous-search", function (event) {
+    let target = event.target;
+    //console.log($(target).attr("city"));
+    userCityInputEl.value = $(target).attr("city"); // Uses `value`, not `textContent`
+    retrieveCityCoordinates(event);
+})
+
